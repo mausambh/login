@@ -51,7 +51,7 @@ class HomePageState extends State<HomePage> {
                       ),
                       fillColor: Colors.grey.shade200,
                       filled: true,
-                      hintText: 'UserName',
+                      hintText: 'Username',
                     ),
                   ),
                 ),
