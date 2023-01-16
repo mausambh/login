@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:login/route_manager.dart';
 // import 'package:login/extensions.dart';
 
-class LoginFormClass extends StatefulWidget {
-  const LoginFormClass({Key? key}) : super(key: key);
+class RegisterFormClass extends StatefulWidget {
+  const RegisterFormClass({Key? key}) : super(key: key);
   @override
-  State<LoginFormClass> createState() => _LoginFormClassState();
+  State<RegisterFormClass> createState() => _RegisterFormClassState();
 }
 
-class _LoginFormClassState extends State<LoginFormClass> {
+class _RegisterFormClassState extends State<RegisterFormClass> {
   final TextEditingController username = TextEditingController();
   final TextEditingController password = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -20,7 +20,7 @@ class _LoginFormClassState extends State<LoginFormClass> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            "Login Page",
+            "Register Page",
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,
@@ -94,15 +94,77 @@ class _LoginFormClassState extends State<LoginFormClass> {
                         return null;
                       },
                     ),
+
                     const SizedBox(height: 25),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade400),
+                        ),
+                        fillColor: Colors.grey.shade200,
+                        filled: true,
+                        hintText: 'Email Address',
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter email address';
+                        } else if (!value.isValidEmail()) {
+                          return 'Please enter valid email address';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 25),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade400),
+                        ),
+                        fillColor: Colors.grey.shade200,
+                        filled: true,
+                        hintText: 'Phone Number',
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter phone number';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 25),
+                    // GestureDetector(
+                    //   child: Container(
+                    //     padding: const EdgeInsets.all(25),
+                    //     margin: const EdgeInsets.symmetric(horizontal: 25),
+                    //     decoration: BoxDecoration(
+                    //       color: '#8DBDFF'.toColor(),
+                    //       borderRadius: BorderRadius.circular(8),
+                    //     ),
+                    //     child: const Center(
+                    //       child: Text(
+                    //         "Sign Up",
+                    //         style: TextStyle(
+                    //           color: Colors.white,
+                    //           fontWeight: FontWeight.bold,
+                    //           fontSize: 16,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     GestureDetector(
                       child: ElevatedButton(
                         onPressed: () {
                           // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
-                            // Navigator.pop(context, Routes.thirdScreen);
                             Navigator.pushReplacementNamed(
-                                context, Routes.thirdScreen);
+                                context, Routes.loginScreen);
                             //   // If the form is valid, display a snackbar. In the real world,
                             //   // you'd often call a server or save the information in a database.
 
@@ -112,29 +174,29 @@ class _LoginFormClassState extends State<LoginFormClass> {
                         child: const Text('Submit'),
                       ),
                     ),
-                    const SizedBox(height: 25),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Forgot Password?',
-                            style: TextStyle(color: Colors.grey[600]),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // const SizedBox(height: 25),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.end,
+                    //     children: [
+                    //       Text(
+                    //         'Forgot Password?',
+                    //         style: TextStyle(color: Colors.grey[600]),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     const SizedBox(height: 25),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: Center(
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, Routes.registerScreen);
+                            Navigator.pushNamed(context, Routes.loginScreen);
                           },
                           child: const SizedBox(
-                            child: Text("Not a Member? SIGN UP ",
+                            child: Text("Already a Member? LOG IN ",
                                 style: TextStyle(
                                   color: Colors.black,
                                 )),
